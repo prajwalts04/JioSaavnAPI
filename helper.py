@@ -1,7 +1,7 @@
 import base64
 import jiosaavn
 from pyDes import *
-
+import html
 def format_song(data,lyrics):
     try:
         url = data['media_preview_url']
@@ -53,7 +53,7 @@ def format_playlist(data,lyrics):
     return data
 
 def format(string):
-    return string.encode().decode('unicode-escape').replace("&quot;","'").replace("&amp;", "&").replace("&#039;", "'")
+    return html.unescape(string)
 
 def decrypt_url(url):
     des_cipher = des(b"38346591", ECB, b"\0\0\0\0\0\0\0\0",pad=None, padmode=PAD_PKCS5)

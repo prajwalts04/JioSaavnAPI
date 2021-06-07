@@ -10,8 +10,8 @@ def search_for_song(query,lyrics,songdata):
         return get_song(id, lyrics)
 
     search_base_url = endpoints.search_base_url+query
-    response = requests.get(search_base_url).text.encode().decode('unicode-escape')
-    response = json.loads(response)
+    response = requests.get(search_base_url).json()
+    #response = json.loads(response)
     song_response = response['songs']['data']
     if not songdata:
         return song_response
@@ -26,8 +26,8 @@ def search_for_song(query,lyrics,songdata):
 def get_song(id,lyrics):
     try:
         song_details_base_url = endpoints.song_details_base_url+id
-        song_response = requests.get(song_details_base_url).text.encode().decode('unicode-escape')
-        song_response = json.loads(song_response)
+        song_response = requests.get(song_details_base_url).json()
+        #song_response = json.loads(song_response)
         song_data = helper.format_song(song_response[id],lyrics)
         if song_data:
             return song_data
@@ -46,8 +46,8 @@ def get_album(album_id,lyrics):
     try:
         response = requests.get(endpoints.album_details_base_url+album_id)
         if response.status_code == 200:
-            songs_json = response.text.encode().decode('unicode-escape')
-            songs_json = json.loads(songs_json)
+            songs_json = response.json()
+            #songs_json = json.loads(songs_json)
             return helper.format_album(songs_json,lyrics)
     except Exception as e:
         print(e)
@@ -64,8 +64,8 @@ def get_playlist(listId,lyrics):
     try:
         response = requests.get(endpoints.playlist_details_base_url+listId)
         if response.status_code == 200:
-            songs_json = response.text.encode().decode('unicode-escape')
-            songs_json = json.loads(songs_json)
+            songs_json = response.json()
+            #songs_json = json.loads(songs_json)
             return helper.format_playlist(songs_json,lyrics)
         return None
     except Exception:
@@ -81,6 +81,6 @@ def get_playlist_id(input_url):
 
 def get_lyrics(id):
     url = endpoints.lyrics_base_url+id
-    lyrics_json = requests.get(url).text
-    lyrics_text = json.loads(lyrics_json)
+    lyrics_json = requests.json()
+    #lyrics_text = json.loads(lyrics_json)
     return lyrics_text['lyrics']
