@@ -122,7 +122,7 @@ http://127.0.0.1:5000/lyrics/?query=<insert-jiosaavn-song-link-or-song-id>&lyric
 
 #### You can fork the repo and deploy on VPS or deploy it on Heroku :)  
 
-[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/anishgowda21/JioSaavnAPI/tree/master)
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy?template=https://github.com/prajwalts04/JioSaavnAPI/tree/master)
 
 **Note:** Heroku gives US/Europe servers which won't be able to fetch all songs flawlessly. Use any Indian VPS for accurate results.
 
